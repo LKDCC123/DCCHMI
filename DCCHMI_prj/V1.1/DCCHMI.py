@@ -1,12 +1,15 @@
 import tkinter as tk
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 from matplotlib.pyplot import Figure
 # import xlrd
 import pandas as pd
 from tkinter import filedialog
 from tkinter import messagebox
+
+import windnd
 
 import base64
 from HWbg_png import img as HWb
@@ -64,7 +67,10 @@ class DataPloter(tk.Tk):
         self.entryvar.set(self.filename)        
         if not self.filename:
             messagebox.showwarning('oops!', message='No Valide File Selected!')
-            
+    
+    def DropFile(self)
+        self.filename
+    
     def OpenPlot(self):
         if self.filename == '':
             messagebox.showwarning('emmm..', message='No File Selected!')
@@ -92,6 +98,10 @@ class DataPloter(tk.Tk):
             else:
                 messagebox.showwarning('ohhh!', message='No More Files!')
         self.filename_old = self.filename
+        
+    def drag_file(files):
+        self.filename = '\n'.join((item.decode('gbk') for item in files))
+        
         
 class PlotLoft(tk.Toplevel): # Toplevel makes IntVal in sonwindows active
     

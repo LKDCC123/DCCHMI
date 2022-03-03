@@ -1,0 +1,18 @@
+void _lwstBT(char* s1, char* s2, int l1, int l2, int i, int j, double edist, double* res)
+    {
+        if (i == l1 || j == l2) 
+        {
+            if (i < l1)  edist += 1.0 * (l1 - i);    // a长，直接加上后续多余长度
+            if (j < l2)  edist += 1.0 * (l2 - j);    // 同上
+            if (edist < *res) *res = edist;  // 更新最大值
+            return;
+        }
+        if (s1[i] == s2[j] || s1[i] == s2[j] + 32 || s1[i] == s2[j] - 32)           // 两个字符匹配
+            _lwstBT(s1, s2, l1, l2, i + 1, j + 1, edist, res);
+        else 
+        {                               // 两个字符不匹配
+            _lwstBT(s1, s2, l1, l2, i + 1, j, edist + 1.0, res);   // 删除a[i]或者b[j]前添加一个字符
+            _lwstBT(s1, s2, l1, l2, i, j + 1, edist + 1.0, res);   // 删除b[j]或者a[i]前添加一个字符
+            _lwstBT(s1, s2, l1, l2, i + 1, j + 1, edist + 1.5, res); // 将a[i]和b[j]替换为相同字符
+        }
+    }
